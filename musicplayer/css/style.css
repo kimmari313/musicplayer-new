@@ -1,0 +1,100 @@
+@charset "utf-8";
+
+    body,div,h2,p{  margin:0px;  padding:0px;  box-sizing:border-box;  }
+    :root{
+      --color-red:#ae1100;       --body-bg:#969aa5;        --play-bg:#ebecf0;
+      --color-light:#ffffff;     --color-shadow:#babecc;   --text-color:#616e7f;
+      --bar-bg:#aec9f8;          --text-size:30px;
+      --pink:#f97794;            --violet:#623aa2;
+    }
+    body{
+      height:100vh; background:var(--body-bg); 
+      display:flex; justify-content:center; align-items:center;
+      background:linear-gradient(var(--pink)0%, var(--violet)100%);
+    }
+    .player_body{
+      width:360px; padding:25px 30px; border-radius:16px; background:var(--play-bg);
+      user-select:none;  position:relative;
+      box-shadow: 6px 5px 10px 0px var(--text-color), 
+                  7px 7px 5px 0px var(--color-light) inset,
+                  -7px -7px 5px 0px var(--color-shadow) inset;
+    }
+    .top{  margin-bottom:25px;  }
+    .top>h2{
+      font-size:var(--text-size);  font-weight:500;  color:var(--text-color); text-align:center;
+      text-shadow:1px 1px 1px var(--color-light), -1px -1px 1px #151515;
+    }
+    .album{
+      height:260px;  border-radius:12px;  overflow:hidden;
+    }
+    .album>img{
+      width:100%;  height:100%;  object-fit:cover;  object-position:center bottom;
+      /* fill(비율유지없음) , contain, cover, none(크기조절없음), scale-down(none,contain중 크기 작은값) */
+    }
+    #volumebtn{
+        margin:10px; width:50%;
+        position:absolute; right:10px; bottom:130px;
+      }
+    .info{
+      text-align:center;  font-size:calc(var(--text-size) * 0.8); margin:calc(var(--text-size) * 0.5);
+    }
+    .info>.artist{   font-size:calc(var(--text-size) * 0.6);  }
+
+    .progress{
+      height:8px;  border-radius:8px;  background:var(--play-bg);  
+      box-shadow:2px 2px 2px 0px var(--color-shadow) inset, 
+                -2px -2px 2px 0px var(--color-light) inset;
+    }
+    .progress>.bar{
+      width:10%;  height:8px;  border-radius:8px;  background:var(--bar-bg);
+      box-shadow:2px 2px 3px 0px var(--color-shadow) inset;
+    }
+    .progress>.timebox{
+      margin-top:8px;  font-size:calc(var(--text-size) * 0.5);
+      display:flex; justify-content:space-between;   
+    }
+    .progress>.timebox>span{  color:#151515; text-shadow:1px 1px 0px var(--color-light); }
+
+    .controls{
+      margin-top:40px;  display:flex;  justify-content:space-between; align-items:center;
+    }
+    .controls>span{
+      font-size:var(--text-size); width:40px; height:40px; border-radius:50%;
+      background:var(--play-bg);  color:var(--text-color);
+      display:flex; justify-content:center; align-items:center;
+      box-shadow:-5px -5px 20px 0px var(--color-light), 5px 5px 20px 0px var(--color-shadow);
+      text-shadow:1px 1px 0px var(--color-light);
+    }
+    .controls>span:hover, .controls>span:active{
+      color:var(--color-red); 
+      box-shadow:-3px -3px 5px 0px var(--color-light), 3px 3px 5px 0px var(--color-shadow);
+    }
+    /*테스트 이후 개선사항*/
+    .play_list li.active{ color:#d9a6a6}
+    .volume{ position:relative; text-align:right; margin-top:5px;}
+    .volume>#volume-btn{ cursor: pointer;}
+    .volume>#bolume-btn.open{ color:#ae1100;}
+    .volume>#bolume-ctrl{
+      position:absolute; right:0px; bottom:24px; width:30px; height:130px;
+      background:rgba(128, 64, 32, 0.6); border-radius:6px;
+    }
+    .volume>#volume-ctrl.hidden{ display:none;}
+    .volume>#volume-ctrl>.volumebg{
+      width:6px; height:90px; border-radius:3px; background:rgba(255, 255, 255, 0.4);
+      position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+      overflow: hidden;
+    }
+    .volume>#volume-ctrl>.volumebg>.volumerange{
+      transform-origin:center right; transform:rotate(270deg);
+      -webkit-appearance:none; cursor: pointer;
+      position:absolute; right:1px; top:-10px; width:121px; 
+    }
+    .volume>#volume-ctrl>.volumebg>.volumerange:focus{ outline:none;}
+    .volume>#volume-ctrl>.volumebg>.volumerange::-webkit-slider-runnable-track{
+      width:100%; height:100%; border-radius:3px;
+    }
+    .volume>#volume-ctrl>.volumebg>.volumerange::-webkit-slider-thumb{
+      -webkit-appearance:none;
+      width:6px; height:6px; border-radius:3px; background:#fff;
+      box-shadow:-100vw 0 0 100vw #9eb2db;
+    }
