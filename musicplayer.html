@@ -19,23 +19,13 @@
           <img src="images/album1.jpg" alt="Alone -- Color Out">
         </div>
         <!--<input type="range" id="volume">-->
-        <div class="volume">
-            <span id="volume-btn" class="material-icons">volume_up</span>
-            <!--volume_down, volumn_up, volume_off-->
-            <div id="volume-ctrl" class="hidden">
-              <div class="volumebg">
-                <input type="range" class="volumrange" min="0" max="100" value="50" step="1">
-              </div>
-            </div>
+        <div id="volumebtn">
+            <span id="upbtn" class="material-icons">volume_up</span>
+            <input type="range" id="volume-control" min="1" max="10">
         </div>
         <div class="info">
           <p class="name">Alone</p>
           <p class="artist">Color Out</p>
-        </div>
-        <div class="etc">
-          <div class="play_list">
-            <ul></ul>
-          </div>
         </div>
         <div class="progress">
           <div class="bar"><audio src="" id="mainAudio"></audio></div>
@@ -72,7 +62,7 @@
             //----------------------------
             audioVolume.addEventListener("change", function(e) {
             console.log (this.value/10);
-            });
+            })
             //--------------------------------------
             const loadMusic = (num) =>{
               musicAudio.src = `songs/${musicList[num].audio}.mp3`;
@@ -142,45 +132,6 @@
               musicAudio.currentTime = ( clickPosition / maxWidth )*musicAudio.duration;
               if( playBtn.innerHTML == 'play_arrow'){
                 musicPlay();
-              }
-            })
-            /*테스트 개선 사항*/
-            const musicListName = listBox.querySelector('li');
-
-            const listClassActive=()=>{
-              musicListName.forEach((list)=>{
-                if(list_index == list.getAttribute('data-index')){
-                  list.classList.add('active');
-                }else{
-                  list.classList.remove('active');
-                }
-              });
-            }
-            musicListName.forEach((list)=>{
-              list.addEventListener('click',(e)=>{
-                list_index = e.currentTarget.dataset.index;
-                listClassActive();
-                loadMusic(list_index);
-                musicPlay();
-              });
-            });
-            const volumeBtn = musicApp.querySelector('#volume-btn');
-            const volumeCtrl = musicApp.querySelector('#volume-ctrl');
-            const volumeRange = musicApp.querySelector('#volume-range');
-            musicAudio.volume = 0.5;
-            volumebtn.addEventListener('click',(evt)=>{
-              evt.target.classList.toggle('open');
-              volumeCtrl.classList.toggle('hidden');
-            })
-            volumeRange.addEventListener('change',()=>{
-              musicAudio.volumeRange.value/100;
-              let currentVol = musicAudio.volume;
-              if(currentVol ===0){
-                volumeBtn.innerHTML = 'volume_off';
-              }else if(currentVol<=0.5){
-                volumeBtn.innerHTML = 'volume_down';
-              }else{
-                volumeBtn.innerHTML = 'volume_up';
               }
             })
           </script>
